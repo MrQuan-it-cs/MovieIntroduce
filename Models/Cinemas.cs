@@ -15,5 +15,7 @@ namespace MovieIntroduce.Models
         public string CinemaName { get; set; }
         [BsonElement("Address")]
         public string Address { get; set; }
-    }
+		[BsonElement("__v")]
+		public int __v { get; set; }
+	}
 }
