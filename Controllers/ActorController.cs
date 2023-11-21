@@ -5,7 +5,7 @@ using MovieIntroduce.Services;
 
 namespace MovieIntroduce.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/actors")]
     [ApiController]
     public class ActorController : ControllerBase
     {
