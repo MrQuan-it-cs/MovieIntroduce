@@ -38,4 +38,4 @@ namespace MovieIntroduce.Services
             return await _actors.Find(actor => actor.ActorName.Contains(nameSearch) && actor.IsDeleted == false).Skip(skip).Limit(limit).ToListAsync();
         }
     }
-}
+} 

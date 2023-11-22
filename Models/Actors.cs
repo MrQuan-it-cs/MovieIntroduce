@@ -20,6 +20,6 @@ namespace MovieIntroduce.Models
         [BsonElement("__v")]
         public int __v { get; set; }
 
-        public List<Images> Image_details { get; set; }
+        public List<Images> Image_details { get; set; } 
     }
 }

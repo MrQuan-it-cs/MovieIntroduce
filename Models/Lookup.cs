@@ -13,7 +13,5 @@ namespace MovieIntroduce.Models
                 {"as","Image_details" },
             }}
         };
-
-
     }
 }
