@@ -16,7 +16,7 @@ namespace MovieIntroduce.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Films>> Get([FromQuery] int page = 1, int limit = 5)
+        public async Task<IEnumerable<Films>> Get([FromQuery] int page = 1, int limit = 5)
         {
             return await _services.Get(page, limit);
         }

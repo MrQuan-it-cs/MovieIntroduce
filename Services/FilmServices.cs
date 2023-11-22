@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MovieIntroduce.Models;
 
@@ -13,11 +14,33 @@ namespace MovieIntroduce.Services
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _films = database.GetCollection<Films>(mongoDBSettings.Value.FilmCollection);
         }
-        public async Task<List<Films>> Get(int page, int limit)
+        public async Task<IEnumerable<Films>> Get(int page, int limit)
         {
             var skip = (page - 1) * limit;
-            var totalPage = Math.Ceiling(await _films.CountDocumentsAsync(film => true) / (decimal)limit);
-            return await _films.Find(film => true && film.IsDeleted == false).Skip(skip).Limit(limit).ToListAsync();
+            //var totalPage = Math.Ceiling(await _films.CountDocumentsAsync(film => true) / (decimal)limit);
+            //return await _films.Find(film => true && film.IsDeleted == false).Skip(skip).Limit(limit).ToListAsync();
+
+            BsonDocument limitDoc = new BsonDocument
+            {
+                {"$limit",limit}
+            };
+            BsonDocument skipDoc = new BsonDocument
+            {
+                {"$skip",skip}
+            };
+
+            BsonDocument[] pipeline = new BsonDocument[] { skipDoc, limitDoc,
+                Lookup.film_lookup_actors,
+                Lookup.film_lookup_images,
+                Lookup.film_lookup_cinemas,
+                Lookup.film_lookup_coverimage,
+                Lookup.film_lookup_posterimage,
+                Lookup.film_lookup_reviewimage
+            };
+
+            return await _films.Aggregate<Films>(pipeline).ToListAsync();
+
+
         }
         public async Task<Films> GetById(string id)
         {

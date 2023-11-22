@@ -79,5 +79,15 @@ namespace MovieIntroduce.Models
         [BsonElement("ReviewImage")]
         [BsonRepresentation(BsonType.ObjectId)]
         public string ReviewImage { get; set; }
+
+
+
+        public List<Images> CoverImage_details { get; set; }
+        public List<Images> Image_details { get; set; }
+        public List<Images> PosterImage_details { get; set; }
+        public List<Images> ReviewImage_details { get; set; }
+        public List<Cinemas> Cinema_details { get; set; }
+        public List<Actors> Actor_details { get; set; }
+
     }
 }

@@ -43,5 +43,10 @@ namespace MovieIntroduce.Models
 
         [BsonElement("__v")]
         public int __v { get; set; }
+
+
+        public List<Images> CinemaImage_details { get; set; }
+        public List<Images> FareImage_details { get; set; }
+        public List<Cinemas> Cinema_details { get; set; }
     }
 }
