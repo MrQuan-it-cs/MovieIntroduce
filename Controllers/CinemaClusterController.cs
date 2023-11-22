@@ -5,7 +5,7 @@ using MovieIntroduce.Services;
 
 namespace MovieIntroduce.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("cinema_cluster")]
     [ApiController]
     public class CinemaClusterController : ControllerBase
     {
