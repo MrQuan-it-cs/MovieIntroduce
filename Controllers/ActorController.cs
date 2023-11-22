@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieIntroduce.Models;
 using MovieIntroduce.Services;
 
@@ -15,7 +14,7 @@ namespace MovieIntroduce.Controllers
             _services = services;
         }
         [HttpGet]
-        public async Task<List<Actors>> Get([FromQuery] int page = 1, int limit = 5)
+        public async Task<IEnumerable<Actors>> Get([FromQuery] int page = 1, int limit = 5)
         {
             return await _services.Get(page, limit);
         }

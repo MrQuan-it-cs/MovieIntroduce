@@ -19,5 +19,7 @@ namespace MovieIntroduce.Models
         public int Age { get; set; }
         [BsonElement("__v")]
         public int __v { get; set; }
+
+        public List<Images> Image_details { get; set; }
     }
 }
