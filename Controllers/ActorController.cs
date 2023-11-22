@@ -19,9 +19,9 @@ namespace MovieIntroduce.Controllers
             return await _services.Get(page, limit);
         }
         [HttpGet("search")] 
-        public async Task<List<Actors>> GetByName([FromQuery] string nameSearch = "", int page = 1, int limit = 5)
+        public async Task<List<Actors>> GetByName([FromQuery] string q = "", int page = 1, int limit = 5)
         {
-            return await _services.GetByName(nameSearch, page, limit);
+            return await _services.GetByName(q, page, limit);
         }
     }
 }

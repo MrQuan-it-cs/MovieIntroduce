@@ -15,15 +15,14 @@ namespace MovieIntroduce.Controllers
             _services = services;
         }
         [HttpGet]
-        public async Task<IEnumerable<CinemaClusters>> Get([FromQuery] int page = 1, int limit = 5)
+        public async Task<IEnumerable<CinemaClusters>> Get()
         {
-            return await _services.Get(page, limit);
+            return await _services.Get();
         }
-        [HttpGet("get")]
-        public async Task<CinemaClusters> GetById([FromQuery] string id)
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<CinemaClusters>> GetById(string id)
         {
-            var model = await _services.GetById(id);
-            return model;
+            return await _services.GetById(id);
         }
         [HttpGet("search")]
         public async Task<List<CinemaClusters>> GetByName([FromQuery] string nameSearch = "", int page = 1, int limit = 5)

@@ -13,11 +13,9 @@ namespace MovieIntroduce.Services
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _cinemas = database.GetCollection<Cinemas>(mongoDBSettings.Value.CinemaCollection);
         }
-        public async Task<List<Cinemas>> Get(int page, int limit)
+        public async Task<List<Cinemas>> Get()
         {
-            var skip = (page-1) * limit;
-            var totalPage = Math.Ceiling(await _cinemas.CountDocumentsAsync(cinema => true)/(decimal)limit);
-            return await _cinemas.Find(cinema => true).Skip(skip).Limit(limit).ToListAsync();
+            return await _cinemas.Find(cinema => true).ToListAsync();
         }
         public async Task<List<Cinemas>> GetByName(string nameSearch, int page, int limit)
         {
